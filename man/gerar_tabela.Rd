@@ -2,16 +2,13 @@
 % Please edit documentation in R/functions.R
 \name{gerar_tabela}
 \alias{gerar_tabela}
-\title{Gerar tabela com países e respectivas capitais}
+\title{Generate table with countries, capitals e continents}
 \usage{
-gerar_tabela(caminho)
-}
-\arguments{
-\item{caminho}{Caminho onde será salva a base de dados no seu computador.}
+gerar_tabela()
 }
 \value{
-Retorna uma tibble com a tabela com os países, capitais e continentes.
+Tibble containing countries, capitals and their respective continents.
 }
 \description{
-Gerar tabela com países e respectivas capitais
+Generate table with countries, capitals e continents
 }
