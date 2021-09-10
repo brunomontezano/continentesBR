@@ -58,7 +58,8 @@ gerar_tabela() %>%
   ggplot2::geom_col() +
   ggplot2::theme_minimal() +
   ggplot2::theme(legend.position = "none") +
-  ggplot2::labs(x = "Continente", y = "Número de países")
+  ggplot2::labs(x = "Continente", y = "Número de países") +
+  ggplot2::coord_flip()
 ```
 
 <img src="man/figures/README-unnamed-chunk-2-1.png" width="100%" />
