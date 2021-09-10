@@ -12,7 +12,7 @@ forma acessível para quem quiser uma tabela limpa rapidamente.
 
 ## Instalação
 
-Você pode instalar a última versão do pacote continentesBR através do
+Você pode instalar a última versão do pacote `continentesBR` através do
 seguinte código:
 
 ``` r
