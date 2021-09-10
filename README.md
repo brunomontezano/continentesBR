@@ -24,7 +24,7 @@ remotes::install_github("brunomontezano/continentesBR")
 
 ## Exemplo
 
-Este é o exemplo de uso da única função presente na versão atual do
+Este é o exemplo de uso da única função presente na atual versão do
 pacote:
 
 ``` r
@@ -65,3 +65,9 @@ gerar_tabela() %>%
 ```
 
 <img src="man/figures/README-unnamed-chunk-2-1.png" width="100%" />
+
+## Agradecimentos
+
+Agradeço ao designer [Guilherme
+Bueno](https://guilhermebuenodesign.github.io/) pela elaboração do logo
+do pacote.

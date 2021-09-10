@@ -36,7 +36,7 @@ remotes::install_github("brunomontezano/continentesBR")
 
 ## Exemplo
 
-Este é o exemplo de uso da única função presente na versão atual do pacote:
+Este é o exemplo de uso da única função presente na atual versão do pacote:
 
 ```{r example}
 # Caso prefira não carregar o pacote, utilizar como continentesBR::gerar_tabela()
@@ -59,3 +59,8 @@ gerar_tabela() %>%
   ggplot2::labs(x = "Continente", y = "Número de países") +
   ggplot2::coord_flip()
 ```
+
+## Agradecimentos
+
+Agradeço ao designer [Guilherme Bueno](https://guilhermebuenodesign.github.io/) pela
+elaboração do logo do pacote.
