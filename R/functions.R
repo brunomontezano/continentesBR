@@ -1,11 +1,15 @@
 library(magrittr, include.only = "%>%")
 
-#' Generate table with countries, capitals e continents
+#' Gera uma tabela com países, capitais e continentes do mundo
 #'
-#' @return Tibble containing countries, capitals and their respective continents.
+#'
+#' @param salvar Decidir se deve ser salvo um arquivo local no computador com a tabela. Valor padrão: `FALSE`
+#' @param formato Formato do arquivo a ser salvo localmente. Por padrão, "csv". Disponíveis
+#'
+#' @return Retorna uma tibble contendo países, capitais e seus respectivos continentes.
 #' @export
 #'
-gerar_tabela <- function() {
+gerar_tabela <- function(salvar = FALSE, formato = "csv") {
 
 paises_america <- httr::GET("https://brasilescola.uol.com.br/geografia/paises-america.htm")
 paises_africa <- httr::GET("https://brasilescola.uol.com.br/geografia/paises-da-africa.htm")
@@ -59,6 +63,12 @@ asia <- paises_asia %>%
   dplyr::mutate(continente = "\u00c1sia")
 
 continentes <- dplyr::bind_rows(america, africa, asia, europa, oceania)
+
+if (salvar == TRUE & formato == "csv") {
+  readr::write_csv(continentes, file = "tabela_continentes.csv")
+} else if (salvar == TRUE & formato == "excel") {
+  writexl::write_xlsx(continentes, path = "tabela_continentes.xlsx")
+}
 
 return(continentes)
 

@@ -1,6 +1,6 @@
 Package: continentesBR
 Title: Gather data of countries and capitals from Wikipedia and BrasilEscola
-Version: 0.0.1
+Version: 0.0.2
 Authors@R: 
     person(given = "Bruno",
            family = "Montezano",
@@ -21,6 +21,8 @@ Imports:
     janitor,
     magrittr,
     purrr,
+    readr,
     rvest,
     stringr,
-    tidyr
+    tidyr,
+    writexl

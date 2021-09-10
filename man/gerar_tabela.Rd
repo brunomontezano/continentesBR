@@ -2,13 +2,18 @@
 % Please edit documentation in R/functions.R
 \name{gerar_tabela}
 \alias{gerar_tabela}
-\title{Generate table with countries, capitals e continents}
+\title{Gera uma tabela com países, capitais e continentes do mundo}
 \usage{
-gerar_tabela()
+gerar_tabela(salvar = FALSE, formato = "csv")
+}
+\arguments{
+\item{salvar}{Decidir se deve ser salvo um arquivo local no computador com a tabela. Valor padrão: \code{FALSE}}
+
+\item{formato}{Formato do arquivo a ser salvo localmente. Por padrão, "csv". Disponíveis}
 }
 \value{
-Tibble containing countries, capitals and their respective continents.
+Retorna uma tibble contendo países, capitais e seus respectivos continentes.
 }
 \description{
-Generate table with countries, capitals e continents
+Gera uma tabela com países, capitais e continentes do mundo
 }
