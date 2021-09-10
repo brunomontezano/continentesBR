@@ -4,6 +4,8 @@
 # continentesBR <a href='https://github.com/brunomontezano/continentesBR/'><img src='man/figures/logo.png' align="right" height="139" /></a>
 
 <!-- badges: start -->
+
+[![R-CMD-check](https://github.com/brunomontezano/continentesBR/workflows/R-CMD-check/badge.svg)](https://github.com/brunomontezano/continentesBR/actions)
 <!-- badges: end -->
 
 ## Resumo
@@ -47,9 +49,16 @@ gerar_tabela()
 #> # … with 207 more rows
 ```
 
-Com os dados adquiridos, podemos exportar para quaisquer arquivos
-desejados ou também realizar qualquer manipulação posterior que se faça
-necessária:
+Podemos exportar a tabela para o nosso computador através dos argumentos
+`salvar` e `formato`:
+
+``` r
+# Como comentado anteriormente, pode-se utilizar a função através dos "::"
+continentesBR::gerar_tabela(salvar = TRUE, formato = "xlsx")
+```
+
+Ou também realizar qualquer manipulação ou visualização posterior que se
+faça necessária:
 
 ``` r
 library(magrittr)
@@ -64,7 +73,7 @@ gerar_tabela() %>%
   ggplot2::coord_flip()
 ```
 
-<img src="man/figures/README-unnamed-chunk-2-1.png" width="100%" />
+<img src="man/figures/README-unnamed-chunk-4-1.png" width="100%" />
 
 ## Agradecimentos
 

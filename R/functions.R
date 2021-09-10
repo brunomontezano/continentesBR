@@ -4,7 +4,7 @@ library(magrittr, include.only = "%>%")
 #'
 #'
 #' @param salvar Decidir se deve ser salvo um arquivo local no computador com a tabela. Valor padrão: `FALSE`
-#' @param formato Formato do arquivo a ser salvo localmente. Por padrão, "csv". Disponíveis
+#' @param formato Formato do arquivo a ser salvo localmente. Por padrão, "csv". Valores disponíveis: "csv" e "xlsx".
 #'
 #' @return Retorna uma tibble contendo países, capitais e seus respectivos continentes.
 #' @export

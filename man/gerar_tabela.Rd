@@ -9,7 +9,7 @@ gerar_tabela(salvar = FALSE, formato = "csv")
 \arguments{
 \item{salvar}{Decidir se deve ser salvo um arquivo local no computador com a tabela. Valor padrão: \code{FALSE}}
 
-\item{formato}{Formato do arquivo a ser salvo localmente. Por padrão, "csv". Disponíveis}
+\item{formato}{Formato do arquivo a ser salvo localmente. Por padrão, "csv". Valores disponíveis: "csv" e "xlsx".}
 }
 \value{
 Retorna uma tibble contendo países, capitais e seus respectivos continentes.

@@ -17,6 +17,7 @@ knitr::opts_chunk$set(
 # continentesBR <a href='https://github.com/brunomontezano/continentesBR/'><img src='man/figures/logo.png' align="right" height="139" /></a>
 
 <!-- badges: start -->
+[![R-CMD-check](https://github.com/brunomontezano/continentesBR/workflows/R-CMD-check/badge.svg)](https://github.com/brunomontezano/continentesBR/actions)
 <!-- badges: end -->
 
 ## Resumo
@@ -38,14 +39,21 @@ remotes::install_github("brunomontezano/continentesBR")
 
 Este é o exemplo de uso da única função presente na atual versão do pacote:
 
-```{r example}
+```{r}
 # Caso prefira não carregar o pacote, utilizar como continentesBR::gerar_tabela()
 library(continentesBR)
 gerar_tabela()
 ```
 
-Com os dados adquiridos, podemos exportar para quaisquer arquivos desejados ou também
-realizar qualquer manipulação posterior que se faça necessária:
+Podemos exportar a tabela para o nosso computador através dos argumentos `salvar` e
+`formato`:
+
+```{r, eval = FALSE}
+# Como comentado anteriormente, pode-se utilizar a função através dos "::"
+continentesBR::gerar_tabela(salvar = TRUE, formato = "xlsx")
+```
+
+Ou também realizar qualquer manipulação ou visualização posterior que se faça necessária:
 
 ```{r}
 library(magrittr)
