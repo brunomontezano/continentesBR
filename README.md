@@ -1,10 +1,12 @@
 
 <!-- README.md is generated from README.Rmd. Please edit that file -->
 
-# continentesBR
+# continentesBR <a href='https://github.com/brunomontezano/continentesBR/'><img src='man/figures/logo.png' align="right" height="139" /></a>
 
 <!-- badges: start -->
 <!-- badges: end -->
+
+## Resumo
 
 O objetivo deste pacote é adquirir os dados contidos em páginas da
 Wikipedia, BrasilEscola e SportHistoire e, então, disponibilizar de
