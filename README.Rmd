@@ -24,7 +24,8 @@ knitr::opts_chunk$set(
 
 O objetivo deste pacote é adquirir os dados contidos em páginas da Wikipedia,
 BrasilEscola e SportHistoire e, então, disponibilizar de forma acessível para quem
-quiser uma tabela limpa rapidamente.
+quiser uma tabela limpa sobre dados geográficos dos países rapidamente, em
+português brasileiro.
 
 ## Instalação
 
@@ -37,7 +38,9 @@ remotes::install_github("brunomontezano/continentesBR")
 
 ## Exemplo
 
-Este é o exemplo de uso da única função presente na atual versão do pacote:
+Este é o exemplo de função presente na atual versão do pacote, usada para
+gerar uma tabela (`tibble`) com nomes de países, capitais, continentes,
+área em km<sup>2</sup>, população e densidade populacional:
 
 ```{r}
 # Caso prefira não carregar o pacote, utilizar como continentesBR::gerar_tabela()
@@ -50,12 +53,15 @@ Podemos exportar a tabela para o nosso computador através dos argumentos `salva
 
 ```{r, eval = FALSE}
 # Como comentado anteriormente, pode-se utilizar a função através dos "::"
-continentesBR::gerar_tabela(salvar = TRUE, formato = "xlsx")
+# Neste exemplo, a tibble será salva em um arquivo
+# chamado "tabela_continentes.xlsx" no diretório de trabalho atual
+continentesBR::gerar_tabela(salvar = TRUE, formato = "excel")
 ```
 
 Ou também realizar qualquer manipulação ou visualização posterior que se faça necessária:
 
 ```{r}
+# Quantos países existem em cada continente?
 library(magrittr)
 gerar_tabela() %>%
   dplyr::count(continente) %>% 
@@ -68,7 +74,21 @@ gerar_tabela() %>%
   ggplot2::coord_flip()
 ```
 
+```{r}
+# Existe associação entre área e tamamnho da população?
+gerar_tabela() %>% 
+  dplyr::filter(pop < 1e9 & !is.na(area_km2)) %>% 
+  ggplot2::ggplot() +
+  ggplot2::aes(x = area_km2, y = pop, color = continente) +
+  ggplot2::geom_point(size = 3, alpha = 0.6) +
+  ggplot2::scale_x_log10(label = scales::label_number(
+    big.mark = ".", decimal.mark = ",")) +
+  ggplot2::scale_y_continuous(label = scales::label_number(big.mark = ".",
+    decimal.mark = ",")) +
+  ggplot2::labs(x = bquote("Área (km"^2*")"), y = "População")
+```
+
 ## Agradecimentos
 
-Agradeço ao designer [Guilherme Bueno](https://guilhermebuenodesign.github.io/) pela
-elaboração do logo do pacote.
+Agradeço ao designer [Guilherme Bueno](https://guilhermebuenodesign.github.io/)
+pela elaboração do logo do pacote.
