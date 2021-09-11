@@ -1,5 +1,5 @@
 Package: continentesBR
-Title: Gather data of countries and capitals from Wikipedia and BrasilEscola
+Title: Gather Data of Countries and Capitals from Wikipedia and Brasil Escola
 Version: 1.0.0
 Authors@R: 
     person(given = "Bruno",
