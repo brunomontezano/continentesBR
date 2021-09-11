@@ -1,5 +1,3 @@
-library(magrittr, include.only = "%>%")
-
 #' Gera uma tabela com países, capitais e continentes do mundo
 #'
 #'
@@ -68,6 +66,8 @@ if (salvar == TRUE & formato == "csv") {
   readr::write_csv(continentes, file = "tabela_continentes.csv")
 } else if (salvar == TRUE & formato == "excel") {
   writexl::write_xlsx(continentes, path = "tabela_continentes.xlsx")
+} else if (salvar == TRUE & !(formato %in% c("csv", "excel"))) {
+  stop("Formato possivelmente errado.")
 }
 
 return(continentes)
