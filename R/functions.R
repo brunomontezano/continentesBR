@@ -15,6 +15,8 @@ gerar_tabela <- function(salvar = FALSE, formato = "csv") {
   paises_europa <- httr::GET("https://pt.wikipedia.org/wiki/Europa")
   paises_oceania <- httr::GET("https://pt.wikipedia.org/wiki/Oceania")
   paises_asia <- httr::GET("https://www.sport-histoire.fr/pt/Geografia/Paises_Asia.php")
+  pop_paises <- httr::GET("https://pt.wikipedia.org/wiki/Lista_de_pa%C3%ADses_por_popula%C3%A7%C3%A3o")
+  area_paises <- httr::GET("https://pt.wikipedia.org/wiki/Lista_de_pa%C3%ADses_e_territ%C3%B3rios_por_%C3%A1rea")
 
   # Puxar e limpar base da America
   america <- paises_america %>%
@@ -69,14 +71,64 @@ gerar_tabela <- function(salvar = FALSE, formato = "csv") {
   # Criar base de dados unica com todos os continentes
   continentes <- dplyr::bind_rows(america, africa, asia, europa, oceania)
 
+  # Raspagem e limpeza dos dados de populacao dos paises
+  pop <- pop_paises %>%
+    httr::content() %>%
+    rvest::html_table() %>%
+    purrr::pluck(1) %>%
+    janitor::clean_names() %>%
+    dplyr::rename(
+      posicao_pop = posicao,
+      pop = estimativa_da_onu,
+      data_pop = data,
+      pais = pais_ou_territorio_dependente
+    ) %>%
+    dplyr::select(-estimativa_oficial)
+
+  # Raspagem e limpeza dos dados de area dos paises
+  area <- area_paises %>%
+    httr::content() %>%
+    rvest::html_table() %>%
+    utils::head(6) %>%
+    purrr::map(
+      \(x) dplyr::mutate(x, Ordem = as.character(Ordem))
+    ) %>%
+    purrr::map(
+      \(x) purrr::set_names(x, nm = c("ordem", "pais", "area_km2", "obs"))
+    ) %>%
+    dplyr::bind_rows() %>%
+    dplyr::rename(
+      posicao_area = ordem
+    ) %>%
+    dplyr::select(-obs)
+
+  # Adicionar populacao e area na base e calcular densidade populacional
+  continentes_proc <- continentes %>%
+    dplyr::left_join(pop, by = "pais") %>%
+    dplyr::left_join(area, by = "pais") %>%
+    dplyr::mutate(
+      dplyr::across(
+        c(pop, area_km2),
+        ~ readr::parse_number(stringr::str_remove_all(.x, "[:blank:]"))
+      )) %>%
+    dplyr::mutate(
+      dens_pop = pop / area_km2
+    ) %>%
+    dplyr::mutate(
+      dplyr::across(c(posicao_pop, posicao_area),
+        ~ readr::parse_integer(
+          stringr::str_replace_all(.x, "[^[0-9]]", "")
+        ))
+    )
+
   # Criar a condicional para o parametro de salvar e formato
   if (salvar == TRUE & formato == "csv") {
 
-    readr::write_csv(continentes, file = "tabela_continentes.csv")
+    readr::write_csv(continentes_proc, file = "tabela_continentes.csv")
 
   } else if (salvar == TRUE & formato == "excel") {
 
-    writexl::write_xlsx(continentes, path = "tabela_continentes.xlsx")
+    writexl::write_xlsx(continentes_proc, path = "tabela_continentes.xlsx")
 
   } else if (salvar == TRUE & !(formato %in% c("csv", "excel"))) {
 
@@ -85,6 +137,6 @@ gerar_tabela <- function(salvar = FALSE, formato = "csv") {
   }
 
   # Retornar objeto da tibble ao final da function
-  return(continentes)
+  return(continentes_proc)
 
 }
