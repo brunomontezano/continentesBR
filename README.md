@@ -93,7 +93,8 @@ gerar_tabela() %>%
     decimal.mark = ",")) +
   ggplot2::labs(x = bquote("Área (km"^2*")"),
     y = "População",
-    color = "Continente")
+    color = "Continente") +
+  ggplot2::theme_minimal()
 ```
 
 <img src="man/figures/README-unnamed-chunk-5-1.png" width="100%" />
