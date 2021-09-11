@@ -91,10 +91,14 @@ gerar_tabela <- function(salvar = FALSE, formato = "csv") {
     rvest::html_table() %>%
     utils::head(6) %>%
     purrr::map(
-      \(x) dplyr::mutate(x, Ordem = as.character(Ordem))
+      function(x) {
+        dplyr::mutate(x, Ordem = as.character(Ordem))
+      }
     ) %>%
     purrr::map(
-      \(x) purrr::set_names(x, nm = c("ordem", "pais", "area_km2", "obs"))
+      function(x) {
+        purrr::set_names(x, nm = c("ordem", "pais", "area_km2", "obs"))
+      }
     ) %>%
     dplyr::bind_rows() %>%
     dplyr::rename(
