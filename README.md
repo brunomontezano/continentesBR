@@ -6,6 +6,8 @@
 <!-- badges: start -->
 
 [![R-CMD-check](https://github.com/brunomontezano/continentesBR/workflows/R-CMD-check/badge.svg)](https://github.com/brunomontezano/continentesBR/actions)
+[![Travis build
+status](https://travis-ci.com/brunomontezano/continentesBR.svg?branch=master)](https://travis-ci.com/brunomontezano/continentesBR)
 <!-- badges: end -->
 
 ## Resumo
