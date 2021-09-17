@@ -21,30 +21,38 @@ knitr::opts_chunk$set(
 [![Travis build status](https://travis-ci.com/brunomontezano/continentesBR.svg?branch=master)](https://travis-ci.com/brunomontezano/continentesBR)
 <!-- badges: end -->
 
-## Resumo
+## Resumo / Overview
 
 O objetivo deste pacote é adquirir os dados contidos em páginas da Wikipedia,
 BrasilEscola e SportHistoire e, então, disponibilizar de forma acessível para quem
 quiser uma tabela limpa sobre dados geográficos dos países rapidamente, em
 português brasileiro.
 
-## Instalação
+The purpose of this package is to acquire the data contained in pages from Wikipedia, BrasilEscola and SportHistoire and then make it accessible to anyone who wants a clean table of countries' geographic data quickly, in Brazilian Portuguese. 
+
+## Instalação / Installation
 
 Você pode instalar a última versão do pacote `continentesBR` através do seguinte código:
+
+You can install the latest version of the `continentesBR` package via the following code:
 
 ``` r
 # install.packages("remotes")
 remotes::install_github("brunomontezano/continentesBR")
 ```
 
-## Exemplo
+## Exemplos / Examples
 
 Este é o exemplo de função presente na atual versão do pacote, usada para
 gerar uma tabela (`tibble`) com nomes de países, capitais, continentes,
 área em km<sup>2</sup>, população e densidade populacional:
 
+This is the example of a function present in the current version of the package, used to generate a table (`tibble`) with names of countries, capitals, continents, area in km<sup>2</sup>, population and population density (function name in english would mean `generate_table()`): 
+
 ```{r}
 # Caso prefira não carregar o pacote, utilizar como continentesBR::gerar_tabela()
+
+# If you prefer not to load the package, use as continentsBR::gerar_tabela() 
 library(continentesBR)
 gerar_tabela()
 ```
@@ -52,17 +60,28 @@ gerar_tabela()
 Podemos exportar a tabela para o nosso computador através dos argumentos `salvar` e
 `formato`:
 
+We can export the table to our computer via the `salvar` (`save`)
+and `formato` (`format`) arguments: 
+
 ```{r, eval = FALSE}
 # Como comentado anteriormente, pode-se utilizar a função através dos "::"
 # Neste exemplo, a tibble será salva em um arquivo
 # chamado "tabela_continentes.xlsx" no diretório de trabalho atual
+
+# As mentioned before, you can use the function through "::"
+# In this example, the tibble will be saved to a file
+# called "tabela_continentes.xlsx" in the current working directory 
 continentesBR::gerar_tabela(salvar = TRUE, formato = "excel")
 ```
 
 Ou também realizar qualquer manipulação ou visualização posterior que se faça necessária:
 
+Or carry out any data manipulation or visualization
+that may be necessary: 
+
 ```{r}
 # Quantos países existem em cada continente?
+# How many countries are there on each continent?
 library(magrittr)
 gerar_tabela() %>%
   dplyr::count(continente) %>% 
@@ -72,11 +91,13 @@ gerar_tabela() %>%
   ggplot2::theme_minimal() +
   ggplot2::theme(legend.position = "none") +
   ggplot2::labs(x = "Continente", y = "Número de países") +
+  #ggplot2::labs(x = "Continent", y = "Number of countries") +
   ggplot2::coord_flip()
 ```
 
 ```{r}
 # Existe associação entre área e tamamnho da população?
+# Is there an association between area and population size?
 gerar_tabela() %>% 
   dplyr::filter(pop < 1e9 & !is.na(area_km2)) %>% 
   ggplot2::ggplot() +
@@ -86,13 +107,16 @@ gerar_tabela() %>%
     big.mark = ".", decimal.mark = ",")) +
   ggplot2::scale_y_continuous(label = scales::label_number(big.mark = ".",
     decimal.mark = ",")) +
-  ggplot2::labs(x = bquote("Área (km"^2*")"),
-    y = "População",
-    color = "Continente") +
+  ggplot2::labs(x = bquote("Área (km"^2*")"), # Area
+    y = "População", # Population
+    color = "Continente") + # Continent
   ggplot2::theme_minimal()
 ```
 
-## Agradecimentos
+## Agradecimentos / Acknowledgement
 
 Agradeço ao designer [Guilherme Bueno](https://guilhermebuenodesign.github.io/)
 pela elaboração do logo do pacote.
+
+I would like to thank the designer [Guilherme Bueno](https://guilhermebuenodesign.github.io/) for creating
+the package logo.
