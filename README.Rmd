@@ -57,6 +57,8 @@ library(continentesBR)
 gerar_tabela()
 ```
 
+-----
+
 Podemos exportar a tabela para o nosso computador através dos argumentos `salvar` e
 `formato`:
 
@@ -73,6 +75,8 @@ and `formato` (`format`) arguments:
 # called "tabela_continentes.xlsx" in the current working directory 
 continentesBR::gerar_tabela(salvar = TRUE, formato = "excel")
 ```
+
+-----
 
 Ou também realizar qualquer manipulação ou visualização posterior que se faça necessária:
 
@@ -94,6 +98,8 @@ gerar_tabela() %>%
   #ggplot2::labs(x = "Continent", y = "Number of countries") +
   ggplot2::coord_flip()
 ```
+
+-----
 
 ```{r}
 # Existe associação entre área e tamamnho da população?

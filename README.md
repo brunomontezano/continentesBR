@@ -68,6 +68,8 @@ gerar_tabela()
 #> # … with 207 more rows, and 1 more variable: dens_pop <dbl>
 ```
 
+------------------------------------------------------------------------
+
 Podemos exportar a tabela para o nosso computador através dos argumentos
 `salvar` e `formato`:
 
@@ -84,6 +86,8 @@ We can export the table to our computer via the `salvar` (`save`) and
 # called "tabela_continentes.xlsx" in the current working directory 
 continentesBR::gerar_tabela(salvar = TRUE, formato = "excel")
 ```
+
+------------------------------------------------------------------------
 
 Ou também realizar qualquer manipulação ou visualização posterior que se
 faça necessária:
@@ -108,6 +112,8 @@ gerar_tabela() %>%
 ```
 
 <img src="man/figures/README-unnamed-chunk-4-1.png" width="100%" />
+
+------------------------------------------------------------------------
 
 ``` r
 # Existe associação entre área e tamamnho da população?
