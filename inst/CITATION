@@ -1,0 +1,16 @@
+citHeader("To cite continentesBR in publications use:")
+
+citEntry(entry = "Misc",
+  title = "{continentesBR}: R package to scrape country data from Wikipedia and BrasilEscola in Brazilian Portuguese",
+  shorttitle = "continentesBR",
+	author = as.person(c("Bruno Braga Montezano")),
+	url = "https://doi.org/10.5281/zenodo.5516778",
+	publisher = "Zenodo",
+	year = "2021",
+	doi = "10.5281/zenodo.5516778",
+	copyright = "Open Access",
+
+  textVersion = paste(
+"Braga Montezano, Bruno. (2021). continentesBR: R package to scrape country data from Wikipedia and BrasilEscola in Brazilian Portuguese (1.0.0). Zenodo. https://doi.org/10.5281/zenodo.5516778"
+  )
+)
